@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Aprendice extends Model
 {
     use HasFactory;
+
+    // Un aprendiz pertenece a un curso
+    public function course(){
+        return $this->belongTo(Course::class);
+    }
+
+    // Un aprendiz usa un computador
+    public function computer(){
+        return $this->belongTo(Computer::class);
+    }
 }

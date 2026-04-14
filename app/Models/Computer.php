@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Computer extends Model
 {
     use HasFactory;
+
+    // Un computador tiene muchos aprendices
+    public function aprendices(){
+        return $this->hasMany(Aprendice::class);
+    }
 }
