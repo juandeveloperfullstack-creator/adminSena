@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/consultas', [TrainingCenterController::class, 'consulta_1']);
+Route::get('/consultas', [TrainingCenterController::class, 'consulta_2']);
 

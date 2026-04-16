@@ -19,4 +19,9 @@ class TrainingCenterController extends Controller
         $centro = Training_center::find(1);
         return $centro->courses;
     }
+    // Trae al centro con el id (1) y muestra los profesores que hay en el centro 
+    public function consulta_2(){
+        $centro = Training_center::with('teachers')->find(1);
+        return $centro;
+    }
 }
