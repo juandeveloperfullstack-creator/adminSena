@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingCenterController;
-
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ComputerController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AprendiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +22,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/consultas', [TrainingCenterController::class, 'consulta_1']);
+Route::get('/consultaCentro', [TrainingCenterController::class, 'consultaCursos']);
 
+Route::get('/consultaTeacher', [TeacherController::class, 'consultaCurso']);
+
+Route::get('/consultasCursos', [CourseController::class, 'consultaProfe']);
+
+Route::get('/consultasComputador', [ComputerController::class, 'consultaAprendiz']);
+
+Route::get('/consultasAreas', [AreaController::class, 'consultasCurso']);
+
+Route::get('/consultasAprendiz', [AprendiceController::class, 'consultaCurso']);
