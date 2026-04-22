@@ -24,3 +24,7 @@ class TeacherController extends Controller
         return $profe->courses;
     }
 }
+
+
+
+

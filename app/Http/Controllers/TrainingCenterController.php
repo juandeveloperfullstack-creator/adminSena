@@ -17,4 +17,5 @@ class TrainingCenterController extends Controller
         $centro = Training_center::find(1);
         return $centro->courses;
     }
+
 }
