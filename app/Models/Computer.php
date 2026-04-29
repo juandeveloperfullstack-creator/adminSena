@@ -10,7 +10,7 @@ class Computer extends Model
     use HasFactory;
 
     // Un computador tiene muchos aprendices
-    public function aprendices(){
-        return $this->hasMany(Aprendice::class);
+    public function aprendice(){
+        return $this->hasOne(Aprendice::class);
     }
 }

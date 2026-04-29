@@ -16,6 +16,6 @@ class Aprendice extends Model
 
     // Un aprendiz usa un computador
     public function computer(){
-        return $this->belongTo(Computer::class);
+        return $this->belongsTo(Computer::class);
     }
 }

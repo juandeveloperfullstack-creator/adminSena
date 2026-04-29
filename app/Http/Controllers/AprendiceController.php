@@ -11,4 +11,9 @@ class AprendiceController extends Controller
         $aprendiz = Aprendice::find(1);
         return $aprendiz->course;
     }
+
+    public function consultaComputador(){
+        $aprendice = Aprendice::find(3);
+        return $aprendice->computer;
+    }
 }
