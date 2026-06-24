@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultasController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\TrainingCenterController;
+use App\Http\Controllers\ComputerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +21,12 @@ Route::get('/', function () {
 });
 
 
-Route::get('/consultas',[ConsultasController::class, 'consulta_2']);
+Route::get('area/create',[AreaController::class,'create']);
+Route::post('area/store',[AreaController::class,'store'])->name('area.store');
+
+Route::get('training_center/create',[TrainingCenterController::class,'create']);
+Route::post('training_center/store',[TrainingCenterController::class,'store'])->name('training_center.store');
+
+Route::get('computer/create',[ComputerController::class,'create']);
+Route::post('computer/store',[ComputerController::class,'store'])->name('computer.store');
+

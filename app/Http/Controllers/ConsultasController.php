@@ -69,3 +69,5 @@ class ConsultasController extends Controller
 $computadores = Computer::whereHas('aprendice', function ($query) {
     $query->where('course_id', 5); // Solo computadores cuyo aprendiz sea del curso 5
 })->get();
+
+

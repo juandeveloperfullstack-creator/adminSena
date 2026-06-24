@@ -11,4 +11,17 @@ class ComputerController extends Controller
         $compu = Computer::find(3);
         return $compu->aprendices;
     }
+
+    public function create (){
+    return view('computer.create');
+    }
+
+    public function store(Request $request){
+
+    $computer = new Computer();
+    $computer->number=$request->number;
+    $computer->brand=$request->brand;
+    $computer->save();
+    return $computer;
+    }
 }
