@@ -18,10 +18,7 @@ class ComputerController extends Controller
 
     public function store(Request $request){
 
-    $computer = new Computer();
-    $computer->number=$request->number;
-    $computer->brand=$request->brand;
-    $computer->save();
+    $computer = Computer::create($request->all());
     return $computer;
     }
 }

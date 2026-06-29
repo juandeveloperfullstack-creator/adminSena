@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Aprendice;
+use App\Models\Course;
+use App\Models\Computer;
 
 class AprendiceController extends Controller
 {
@@ -15,5 +17,18 @@ class AprendiceController extends Controller
     public function consultaComputador(){
         $aprendice = Aprendice::find(3);
         return $aprendice->computer;
+    }
+
+    public function create() {
+        $courses = Course::all();
+
+        $computers = Computer::whereDoesntHave('aprendice')->get();
+
+        return view('aprendice.create', compact('courses', 'computers'));
+    }
+
+    public function store(Request $request) {
+        $aprendiz = Aprendice::create($request->all());
+        return $aprendiz;
     }
 }

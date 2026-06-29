@@ -14,7 +14,7 @@ class Course extends Model
         return $this->belongsTo(Area::class);
     }
 
-    // Un curso pertenece a un centro de formacion 
+    // Un curso pertenece a un centro de formacion
     public function training_center(){
         return $this->belongsTo(Training_center::class);
     }
@@ -28,4 +28,6 @@ class Course extends Model
     public function teachers(){
         return $this->belongsToMany(Teacher::class);
     }
+
+    protected $fillable = ['course_number', 'day', 'area_id', 'training_center_id'];
 }
