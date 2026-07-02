@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FORM APRENDICE</title>
+    @vite('resources/css/app.css')
 </head>
 <body>
 <h1>formulario aprendiz</h1>
@@ -58,5 +59,5 @@
 <br><br>
 
 
-<button type="submit">Enviar Formulario:</button>
+<button type="submit" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-200">Enviar Formulario:</button>
 </form>
