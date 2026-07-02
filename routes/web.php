@@ -24,21 +24,21 @@ Route::get('/', function () {
 });
 
 
-Route::get('area/create',[AreaController::class,'create']);
+Route::get('area/create',[AreaController::class,'create'])->name('area.create');
 Route::post('area/store',[AreaController::class,'store'])->name('area.store');
 
-Route::get('training_center/create',[TrainingCenterController::class,'create']);
+Route::get('training_center/create',[TrainingCenterController::class,'create'])->name('training_center.create');
 Route::post('training_center/store',[TrainingCenterController::class,'store'])->name('training_center.store');
 
-Route::get('computer/create',[ComputerController::class,'create']);
+Route::get('computer/create',[ComputerController::class,'create'])->name('computer.create');
 Route::post('computer/store',[ComputerController::class,'store'])->name('computer.store');
 
-Route::get('teacher/create',[TeacherController::class,'create']);
+Route::get('teacher/create',[TeacherController::class,'create'])->name('teacher.create');
 Route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.store');
 
-Route::get('course/create',[CourseController::class,'create']);
+Route::get('course/create',[CourseController::class,'create'])->name('course.create');
 Route::post('course/store',[CourseController::class,'store'])->name('course.store');
 
-Route::get('aprendice/create',[AprendiceController::class,'create']);
+Route::get('aprendice/create',[AprendiceController::class,'create'])->name('aprendice.create');
 Route::post('aprendice/store',[AprendiceController::class,'store'])->name('aprendice.store');
 
