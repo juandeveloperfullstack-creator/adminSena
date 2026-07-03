@@ -10,7 +10,7 @@
     <form action="{{route('area.store')}}" method="POST">
         @csrf
 
-        
+
         <div class="mb-3">
             <label for="full_name" class="form-label fw-semibold text-secondary small" >Nombre de Area :</label>
             <div class="input-group shadow-sm-inset">
@@ -18,7 +18,7 @@
                 <input type="text" name="name" id="name" class="form-control border-start-0 ps-1" placeholder="Area">
             </div>
 
-            <div class="text-center mb-2">
+            <div class="text-center mt-4">
             <button type="submit" class="btn text-white px-5 py-2 fw-semibold" style="background-color: #cf7357; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Subir</button>
         </div>
         </div>

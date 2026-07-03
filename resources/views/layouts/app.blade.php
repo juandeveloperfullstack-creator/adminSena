@@ -5,13 +5,13 @@
     <title>AdminSena</title>
     @include('includes.dependencias')
 </head>
-<body>
-    
+<body class="d-flex flex-column min-vh-100">
+
 @include('includes.navbar')
 
-    <div class="container mt-5 pb-5">
+    <main class="flex-fill container my-5">
         @yield('content')
-    </div>
+    </main>
 
     @include('includes.footer')
 

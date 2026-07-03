@@ -1,53 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>formulario teacher</h1>
+    <div class="card p-4 shadow-sm"
+        style="border-radius: 40px 0px 40px 0px; max-width: 480px; margin: 0 auto; border: 1px solid #e0e0e0;">
+        <h2 class="text-center text-secondary mb-3" style="font-family: sans-serif; font-weight: 400;">
+            Form<span style="color: #f0a030;">Teacher</span>
+        </h2>
+        <hr class="text-muted opacity-25">
 
-<form action="{{route('teacher.store')}}" method="POST" enctype="multipart/form-data">
-
-@csrf
-
-<label>
-    Nombre:
-    <br>
-    <input type="text" name="name">
-</label>
-<br>
-<br>
-
-<label>
-    Email:
-    <br>
-    <input type="email" name="email">
-</label>
-<br>
-<br>
-
-<label>Selecciona el area</label>
-
-<select name="area_id" id="area_id">
-    <option value="">Selecciona un area</option>
-
-    @foreach ($areas as $area )
-    <option value="{{ $area->id }}">{{ $area->name}}</option>
-    @endforeach
-</select>
-<br><br>
-
-<label>Selecciona un centro de formación</label>
-<select name="training_center_id" id="training_center">
-    <option value="">Centro de formación</option>
-
-    @foreach ($centers as $center )
-    <option value="{{ $center->id }}">{{ $center->name}}</option>
-    @endforeach
-</select>
-<br><br>
+        <form action="{{ route('teacher.store') }}" method="POST">
+            @csrf
 
 
-<button type="submit">Enviar Formulario:</button>
-</form>
+            <div class="mb-3">
+                <label for="full_name" class="form-label fw-semibold text-secondary small">Nombre del profesor:</label>
+                <div class="input-group shadow-sm-inset">
+                    <span class="input-group-text bg-white text-muted border-end-0"> <i
+                            class="bi bi-caret-right-fill"></i></span>
+                    <input type="text" name="name" id="name" class="form-control border-start-0 ps-1"
+                        placeholder="Nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label for="full_name" class="form-label fw-semibold text-secondary small">Email :</label>
+                    <div class="input-group shadow-sm-inset">
+                        <span class="input-group-text bg-white text-muted border-end-0"> <i
+                                class="bi bi-caret-right-fill"></i></span>
+                        <input type="email" name="email" id="email" class="form-control border-start-0 ps-1"
+                            placeholder="Correo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label fw-semibold text-secondary small">Seleciona el
+                            area:</label>
+                            <div class="input-group shadow-sm-inset">
+                                <span class="input-group-text bg-white text-muted border-end-0"> <i
+                                class="bi bi-caret-right-fill"></i></span>
+                        <select name="area_id" id="area_id">
+                            <option value="">Selecciona un area</option>
+
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->id }}">{{ $area->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label fw-semibold text-secondary small">Seleciona un centro de formación:</label>
+                            <div class="input-group shadow-sm-inset">
+                                <span class="input-group-text bg-white text-muted border-end-0"> <i
+                                class="bi bi-caret-right-fill"></i></span>
+                        <select name="training_center_id" id="training_center_id">
+                            <option value="">Centro de formacion</option>
+
+                            @foreach ($centers as $center)
+                                <option value="{{ $center->id }}">{{ $center->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn text-white px-5 py-2 fw-semibold"
+                            style="background-color: #cf7357; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Subir</button>
+                    </div>
+                </div>
+        </form>
+    </div>
 @endsection
-
-
-
