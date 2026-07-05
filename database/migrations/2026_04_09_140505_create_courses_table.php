@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_number');
+            $table->string('course_number');
             $table->string('day', 50);
             //FK1
             $table->unsignedBigInteger('area_id')->nullable();
