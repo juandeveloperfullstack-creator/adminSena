@@ -18,6 +18,12 @@ class AreaController extends Controller
     }
 
 //
+
+    public function index () {
+        $areas = Area::all();
+        return view('area.index', compact('areas'));
+    }
+
     public function create (){
     return view('area.create');
     }

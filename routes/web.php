@@ -20,10 +20,11 @@ use App\Http\Controllers\AprendiceController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Home');
 });
 
 
+Route::get('area/list',[AreaController::class,'index'])->name('area.list');
 Route::get('area/create',[AreaController::class,'create'])->name('area.create');
 Route::post('area/store',[AreaController::class,'store'])->name('area.store');
 
