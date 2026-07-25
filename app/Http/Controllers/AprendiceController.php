@@ -19,6 +19,11 @@ class AprendiceController extends Controller
         return $aprendice->computer;
     }
 
+    public function index(){
+        $aprendices = Aprendice::all();
+        return view('aprendice.index', compact('aprendices'));
+    }
+
     public function create() {
         $courses = Course::all();
 

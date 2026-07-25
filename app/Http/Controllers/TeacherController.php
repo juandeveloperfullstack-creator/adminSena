@@ -10,7 +10,7 @@ use App\Models\Training_center;
 class TeacherController extends Controller
 {
     // muestra que area da un profesor
-    public function consultaArea(){
+    /* public function consultaArea(){
         $profe = Teacher::find(1);
         return $profe->area;
     }
@@ -24,6 +24,11 @@ class TeacherController extends Controller
     public function consultaCurso(){
         $profe = Teacher::find(1);
         return $profe->courses;
+    } */
+
+    public function index(){
+        $profes = Teacher::all();
+        return view('teacher.index', compact('profes'));
     }
 
     public function create() {

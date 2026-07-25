@@ -3,25 +3,28 @@
 @section('content')
     <hr class="text-muted opacity-25">
 
-    <h2><strong>Listar area</strong></h2>
+    <h2><strong>Lista computador</strong></h2>
     <div class ="container">
 
-    <table id="idarea" class="table table-striped table-bordered" style="width:100%">
+    <table id="idaprendice" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombre</th>
+                <th>Numero</th>
+                <th>Marca</th>
             </tr>
         </thead>
         <tbody>
-            <a href="{{ route('area.create') }}" class="btn btn-success">
+            <a href="{{ route('computer.create') }}" class="btn btn-success">
                     <i class="bi bi-plus-circle"></i> Nuevo Producto
                 </a>
-        @foreach($areas as $area)
+        @foreach($computadores as $computador)
         <tr>
             <br>
-            <td>{{ $area->id}}</td>
-            <td>{{ $area->name}}</td>
+            <td>{{ $computador->id}}</td>
+            <td>{{ $computador->number}}</td>
+            <td>{{ $computador->brand}}</td>
+
             <br>
         </tr>
         @endforeach

@@ -7,9 +7,14 @@ use App\Models\Computer;
 
 class ComputerController extends Controller
 {
-    public function consultaAprendiz(){
+    /* public function consultaAprendiz(){
         $compu = Computer::find(3);
         return $compu->aprendices;
+    } */
+
+    public function index(){
+        $computadores = Computer::all();
+        return view('computer.index', compact('computadores'));
     }
 
     public function create (){

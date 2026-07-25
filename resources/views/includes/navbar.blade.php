@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="nav-link active" aria-current="page" href="{{ route('area.create') }}">Area</a>
+        <a class="nav-link active" aria-current="page" href="{{ route('area.list') }}">Area</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,18 +11,18 @@
                     <a class="nav-link" href="{{ route('training_center.create') }}">TrainingCenter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('computer.create') }}">Computer</a>
+                    <a class="nav-link" href="{{ route('computer.list') }}">Computer</a>
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('teacher.create') }}">Teachers</a>
+                    <a class="nav-link" href="{{ route('teacher.list') }}">Teachers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('course.create') }}">Courses</a>
+                    <a class="nav-link" href="{{ route('course.list') }}">Courses</a>
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('aprendice.create') }}">Apprentice</a>
+                    <a class="nav-link" href="{{ route('aprendice.list') }}">Apprentice</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">

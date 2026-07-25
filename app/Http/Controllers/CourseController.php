@@ -9,7 +9,7 @@ use App\Models\Training_center;
 
 class CourseController extends Controller
 {
-    public function consultaArea(){
+    /* public function consultaArea(){
         $curso = Course::find(2);
         return $curso->area;
     }
@@ -27,6 +27,12 @@ class CourseController extends Controller
     public function consultaProfe(){
         $curso = Course::find(1);
         return $curso->teachers;
+    } */
+
+
+    public function index(){
+        $cursos = Course::all();
+        return view('course.index', compact('cursos'));
     }
 
     public function create() {
