@@ -9,7 +9,7 @@ use App\Models\Computer;
 
 class AprendiceController extends Controller
 {
-    public function consultaCurso(){
+    /* public function consultaCurso(){
         $aprendiz = Aprendice::find(1);
         return $aprendiz->course;
     }
@@ -17,6 +17,11 @@ class AprendiceController extends Controller
     public function consultaComputador(){
         $aprendice = Aprendice::find(3);
         return $aprendice->computer;
+    } */
+
+    public function show($id){
+        $aprendiz = Aprendice::find($id);
+        return view('aprendice.show', compact('aprendiz'));
     }
 
     public function index(){

@@ -28,7 +28,7 @@
             <td>{{ $curso->day}}</td>
             <td>{{ $curso->area_id}}</td>
             <td>{{ $curso->training_center_id}}</td>
-
+            <td><a href="{{ route('course.show', $curso->id) }}">Mostrar</a></td>
             <br>
         </tr>
         @endforeach

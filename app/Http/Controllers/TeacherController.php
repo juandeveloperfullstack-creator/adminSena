@@ -31,6 +31,11 @@ class TeacherController extends Controller
         return view('teacher.index', compact('profes'));
     }
 
+    public function show($id){
+        $profesor = Teacher::find($id);
+        return view('teacher.show', compact('profesor'));
+    }
+
     public function create() {
         $areas = Area::all();
         $centers = Training_center::all();

@@ -24,7 +24,7 @@
             <td>{{ $computador->id}}</td>
             <td>{{ $computador->number}}</td>
             <td>{{ $computador->brand}}</td>
-
+            <td><a href="{{ route('computer.show', $computador->id) }}">Mostrar</a></td>
             <br>
         </tr>
         @endforeach

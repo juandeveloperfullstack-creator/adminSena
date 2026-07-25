@@ -35,6 +35,11 @@ class CourseController extends Controller
         return view('course.index', compact('cursos'));
     }
 
+    public function show($id){
+        $curso = Course::find($id);
+        return view('course.show', compact('curso'));
+    }
+
     public function create() {
         $areas = Area::all();
         $centers = Training_center::all();

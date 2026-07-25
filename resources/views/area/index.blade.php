@@ -22,6 +22,7 @@
             <br>
             <td>{{ $area->id}}</td>
             <td>{{ $area->name}}</td>
+            <td><a href="{{ route('area.show', $area->id) }}">Mostrar</a></td>
             <br>
         </tr>
         @endforeach

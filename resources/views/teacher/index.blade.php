@@ -28,6 +28,7 @@
             <td>{{ $profe->email}}</td>
             <td>{{ $profe->area_id}}</td>
             <td>{{ $profe->training_center_id}}</td>
+            <td><a href="{{ route('teacher.show', $profe->id) }}">Mostrar</a></td>
             <br>
         </tr>
         @endforeach
