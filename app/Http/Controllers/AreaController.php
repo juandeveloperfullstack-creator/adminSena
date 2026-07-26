@@ -7,7 +7,7 @@ use App\Models\Area;
 
 class AreaController extends Controller
 {
-    public function consultaProfe(){
+    /* public function consultaProfe(){
         $area = Area::find(2);
         return $area->teachers;
     }
@@ -15,7 +15,7 @@ class AreaController extends Controller
     public function consultasCurso(){
         $area = Area::find(1);
         return $area->courses;
-    }
+    } */
 
 //
 
@@ -33,10 +33,26 @@ class AreaController extends Controller
     return view('area.create');
     }
 
+    public function edit($id){
+        $area = Area::findOrFail($id);
+        return view('area.edit', compact('area'));
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $area = Area::findOrFail($id);
+        $area->update($request->all());
+
+        return redirect()->route('area.list')->with('success', 'Area actualizada correctamente');
+    }
+
     public function store(Request $request){
         $area = Area::create($request->all());
     return $area;
     }
 
-
+    
 }
