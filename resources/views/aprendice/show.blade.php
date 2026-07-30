@@ -40,7 +40,7 @@
         </div>
 
         <div class="card-footer text-end">
-            <a href="{{ route('area.list') }}" class="btn btn-secondary">Regresar a la lista</a>
+            <a href="{{ route('aprendice.list') }}" class="btn btn-secondary">Regresar a la lista</a>
         </div>
     </div>
 </div>

@@ -39,6 +39,7 @@ Route::post('training_center/store',[TrainingCenterController::class,'store'])->
 Route::get('training_center/show/{id}',[TrainingCenterController::class,'show'])->name('training_center.show');
 Route::get('training_center/{id}/edit', [TrainingCenterController::class, 'edit'])->name('training_center.edit');
 Route::put('training_center/{id}', [TrainingCenterController::class, 'update'])->name('training_center.update');
+Route::delete('training_center/{training_center}', [TrainingCenterController::class, 'destroy'])->name('training_center.destroy');
 
 
 
@@ -48,6 +49,7 @@ Route::post('computer/store',[ComputerController::class,'store'])->name('compute
 Route::get('computer/show/{id}',[ComputerController::class,'show'])->name('computer.show');
 Route::get('computer/{id}/edit', [ComputerController::class, 'edit'])->name('computer.edit');
 Route::put('computer/{id}', [ComputerController::class, 'update'])->name('computer.update');
+Route::delete('computer/{computer}', [ComputerController::class, 'destroy'])->name('computer.destroy');
 
 
 Route::get('teacher/list',[TeacherController::class,'index'])->name('teacher.list');
@@ -55,15 +57,17 @@ Route::get('teacher/create',[TeacherController::class,'create'])->name('teacher.
 Route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.store');
 Route::get('teacher/show/{id}',[TeacherController::class,'show'])->name('teacher.show');
 Route::get('teacher/{teacher}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
-Route::put('teacher/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+Route::put('teacher/{teacher}', [TeacherController::class, 'update'])->name('teacher.update');
+Route::delete('teacher/{teacher}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
 
 Route::get('course/list',[CourseController::class,'index'])->name('course.list');
 Route::get('course/create',[CourseController::class,'create'])->name('course.create');
 Route::post('course/store',[CourseController::class,'store'])->name('course.store');
 Route::get('course/show/{id}',[CourseController::class,'show'])->name('course.show');
-Route::get('course/{id}/edit', [CourseController::class, 'edit'])->name('course.edit');
-Route::put('course/{id}', [CourseController::class, 'update'])->name('course.update');
+Route::get('course/{course}/edit', [CourseController::class, 'edit'])->name('course.edit');
+Route::put('course/{course}', [CourseController::class, 'update'])->name('course.update');
+Route::delete('course/{course}', [CourseController::class, 'destroy'])->name('course.destroy');
 
 
 
@@ -71,7 +75,8 @@ Route::get('aprendice/list',[AprendiceController::class,'index'])->name('aprendi
 Route::get('aprendice/create',[AprendiceController::class,'create'])->name('aprendice.create');
 Route::post('aprendice/store',[AprendiceController::class,'store'])->name('aprendice.store');
 Route::get('aprendice/show/{id}',[AprendiceController::class,'show'])->name('aprendice.show');
-Route::get('aprendice/{id}/edit', [AprendiceController::class, 'edit'])->name('aprendice.edit');
-Route::put('aprendice/{id}', [AprendiceController::class, 'update'])->name('aprendice.update');
+Route::get('aprendice/{aprendice}/edit', [AprendiceController::class, 'edit'])->name('aprendice.edit');
+Route::put('aprendice/{aprendice}', [AprendiceController::class, 'update'])->name('aprendice.update');
+Route::delete('aprendice/{aprendice}', [AprendiceController::class, 'destroy'])->name('aprendice.destroy');
 
 

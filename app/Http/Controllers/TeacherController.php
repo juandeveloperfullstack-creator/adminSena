@@ -54,13 +54,16 @@ class TeacherController extends Controller
         return view('teacher.edit', compact('teacher', 'areas', 'centros'));
     }
 
-    public function update(Request $request, $id){
-        $profe = Teacher::findOrFail($id);
-        $profe->update($request->all());
+    public function update(Request $request, Teacher $teacher){
+        $teacher->update($request->all());
 
         return redirect()->route('teacher.list')->with('success', 'Profesor actualizado correctamente');
     }
 
+    public function destroy(Teacher $teacher){
+        $teacher->delete();
+        return redirect()->route('teacher.list')->with('success', 'Profesor eliminado con exito');
+    }
 }
 
 

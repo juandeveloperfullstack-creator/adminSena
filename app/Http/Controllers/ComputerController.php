@@ -44,4 +44,9 @@ class ComputerController extends Controller
         return redirect()->route('computer.list')->with('success', 'Computador actualizado correctamente');
     }
 
+    public function destroy(Computer $computer){
+        $computer->delete();
+        return redirect()->route('computer.list')->with('success', 'Computador eliminado con exito');
+    }
+
 }

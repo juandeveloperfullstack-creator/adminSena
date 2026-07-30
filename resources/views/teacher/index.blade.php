@@ -31,6 +31,14 @@
             <td><a href="{{ route('teacher.show', $profe->id) }}" class="btn btn-success"><i class="bi bi-eye"></i>
             </a>
             <a href="{{ route('teacher.edit', $profe->id) }}" class="btn  btn-warning text-white"><i class="bi bi-pencil"></i></a>
+
+            <form action="{{ route('teacher.destroy', $profe->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar este profesor?')">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
             </td>
             <br>
         </tr>

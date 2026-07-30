@@ -48,4 +48,9 @@ class TrainingCenterController extends Controller
 
         return redirect()->route('training_center.list')->with('success', 'Centro de formacion actualizado correctamente');
     }
+
+    public function destroy(Training_center $training_center){
+        $training_center->delete();
+        return redirect()->route('training_center.list')->with('success', 'centro de formacion eliminado con exito');
+    }
 }

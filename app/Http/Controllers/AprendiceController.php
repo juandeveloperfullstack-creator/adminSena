@@ -42,15 +42,20 @@ class AprendiceController extends Controller
         return view('aprendice.show', compact('aprendiz'));
     }
 
-    public function edit($id){
-        $aprendiz = Aprendice::findOrFail($id);
-        return view('aprendice.edit', compact('aprendiz'));
+    public function edit(Aprendice $aprendice){
+        $cursos = Course::all();
+        $compus = Computer::all();
+        return view('aprendice.edit', compact('aprendice', 'cursos', 'compus'));
     }
 
-    public function update(Request $request, $id ){
-        $aprendiz = Aprendice::finOrFail($id);
-        $aprendiz->update($request->all());
+    public function update(Request $request, Aprendice $aprendice){
+        $aprendice->update($request->all());
 
         return redirect()->route('aprendice.list')->with('success', 'Aprendiz actualizado correctamente');
+    }
+
+    public function destroy(Aprendice $aprendice){
+        $aprendice->delete();
+        return redirect()->route('aprendice.list')->with('success', 'Aaprendiz eliminado con exito');
     }
 }

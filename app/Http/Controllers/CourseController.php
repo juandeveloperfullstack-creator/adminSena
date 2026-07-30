@@ -52,16 +52,21 @@ class CourseController extends Controller
         return view('course.show', compact('curso'));
     }
 
-    public function edit($id){
-        $curso = Course::findOrFail($id);
-        return view('course.edit', compact('curso'));
+    public function edit(Course $course){
+        $areas = Area::all();
+        $centros = Training_center::all();
+        return view('course.edit', compact('course', 'areas', 'centros'));
     }
 
-    public function update(Request $request, $id){
-        $curso = Course::findOrFail($id);
-        $curso->update($request->all());
+    public function update(Request $request, Course $course){
+        $course->update($request->all());
 
         return redirect()->route('course.list')->with('success', 'Curso actualizado correctamente');
+    }
+
+    public function destroy(Course $course){
+        $course->delete();
+        return redirect()->route('course.list')->with('success', 'Curso eliminado con exito');
     }
 
 }
