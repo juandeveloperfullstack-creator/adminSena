@@ -24,14 +24,20 @@ class AreaController extends Controller
         return view('area.index', compact('areas'));
     }
 
+    public function create (){
+    return view('area.create');
+    }
+
+    public function store(Request $request){
+        $area = Area::create($request->all());
+    return $area;
+    }
+
     public function show($id){
         $area = Area::find($id);
         return view('area.show', compact('area'));
     }
 
-    public function create (){
-    return view('area.create');
-    }
 
     public function edit($id){
         $area = Area::findOrFail($id);
@@ -48,11 +54,4 @@ class AreaController extends Controller
 
         return redirect()->route('area.list')->with('success', 'Area actualizada correctamente');
     }
-
-    public function store(Request $request){
-        $area = Area::create($request->all());
-    return $area;
-    }
-
-    
 }

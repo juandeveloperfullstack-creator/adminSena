@@ -3,7 +3,7 @@
 @section('content')
     <hr class="text-muted opacity-25">
 
-    <h2><strong>Listar area</strong></h2>
+    <h2><strong>Listar de areas</strong></h2>
     <div class ="container">
 
     <table id="idarea" class="table table-striped table-bordered" style="width:100%">

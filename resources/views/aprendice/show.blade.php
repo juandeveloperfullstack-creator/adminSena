@@ -5,9 +5,8 @@
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Detalle del Aprendiz #{{ $aprendiz->id }}</h5>
-            <a href="{{ route('aprendice.list') }}" class="btn btn-sm btn-light">Volver</a>
         </div>
-        
+
         <div class="card-body">
             <div class="mb-3">
                 <label class="form-label text-muted fw-bold">ID:</label>

@@ -31,11 +31,6 @@ class TeacherController extends Controller
         return view('teacher.index', compact('profes'));
     }
 
-    public function show($id){
-        $profesor = Teacher::find($id);
-        return view('teacher.show', compact('profesor'));
-    }
-
     public function create() {
         $areas = Area::all();
         $centers = Training_center::all();
@@ -47,6 +42,24 @@ class TeacherController extends Controller
         $teacher = Teacher::create($request->all());
         return $teacher;
     }
+
+    public function show($id){
+        $profesor = Teacher::find($id);
+        return view('teacher.show', compact('profesor'));
+    }
+
+    public function edit($id){
+        $profe = Teacher::findOrFail($id);
+        return view('teacher.edit', compact('profe'));
+    }
+
+    public function update(Request $request, $id){
+        $profe = Training_center::findOrFail($id);
+        $profe->update($request->all());
+
+        return redirect()->route('teacher.list')->with('success', 'Profesor actualizado correctamente');
+    }
+
 }
 
 

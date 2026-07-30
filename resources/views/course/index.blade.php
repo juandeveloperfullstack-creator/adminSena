@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <a href="{{ route('computer.create') }}" class="btn btn-success">
+            <a href="{{ route('course.create') }}" class="btn btn-success">
                     <i class="bi bi-plus-circle"></i> Nuevo Producto
                 </a>
         @foreach($cursos as $curso)
@@ -28,7 +28,10 @@
             <td>{{ $curso->day}}</td>
             <td>{{ $curso->area_id}}</td>
             <td>{{ $curso->training_center_id}}</td>
-            <td><a href="{{ route('course.show', $curso->id) }}">Mostrar</a></td>
+            <td><a href="{{ route('course.show', $curso->id) }}" class="btn btn-success"><i class="bi bi-eye"></i>
+            </a>
+            <a href="{{ route('course.edit', $curso->id) }}" class="btn  btn-warning text-white"><i class="bi bi-pencil"></i></a>
+            </td>
             <br>
         </tr>
         @endforeach

@@ -23,11 +23,6 @@ class TrainingCenterController extends Controller
         return view('training_center.index', compact('centros'));
     }
 
-    public function show($id){
-        $centro = Training_center::find($id);
-        return view('training_center.show', compact('centro'));
-    }
-
     public function create (){
     return view('training_center.create');
     }
@@ -37,4 +32,20 @@ class TrainingCenterController extends Controller
     return $training;
     }
 
+    public function show($id){
+        $centro = Training_center::find($id);
+        return view('training_center.show', compact('centro'));
+    }
+
+    public function edit($id){
+        $center = Training_center::findOrFail($id);
+        return view('training_center.edit', compact('center'));
+    }
+
+    public function update(Request $request, $id){
+        $center = Training_center::findOrFail($id);
+        $center->update($request->all());
+
+        return redirect()->route('training_center.list')->with('success', 'Centro de formacion actualizado correctamente');
+    }
 }

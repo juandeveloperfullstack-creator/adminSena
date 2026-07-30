@@ -28,7 +28,10 @@
             <td>{{ $profe->email}}</td>
             <td>{{ $profe->area_id}}</td>
             <td>{{ $profe->training_center_id}}</td>
-            <td><a href="{{ route('teacher.show', $profe->id) }}">Mostrar</a></td>
+            <td><a href="{{ route('teacher.show', $profe->id) }}" class="btn btn-success"><i class="bi bi-eye"></i>
+            </a>
+            <a href="{{ route('teacher.edit', $profe->id) }}" class="btn  btn-warning text-white"><i class="bi bi-pencil"></i></a>
+            </td>
             <br>
         </tr>
         @endforeach

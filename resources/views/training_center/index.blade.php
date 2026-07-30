@@ -24,7 +24,10 @@
             <td>{{ $centro->id}}</td>
             <td>{{ $centro->name}}</td>
             <td>{{ $centro->location}}</td>
-            <td><a href="{{ route('training_center.show', $centro->id) }}">Mostrar</a></td>
+            <td><a href="{{ route('training_center.show', $centro->id) }}" class="btn btn-success"><i class="bi bi-eye"></i>
+            </a>
+            <a href="{{ route('training_center.edit', $centro->id) }}" class="btn  btn-warning text-white"><i class="bi bi-pencil"></i></a>
+            </td>
             <br>
         </tr>
         @endforeach

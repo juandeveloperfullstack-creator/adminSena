@@ -19,12 +19,7 @@ class AprendiceController extends Controller
         return $aprendice->computer;
     } */
 
-    public function show($id){
-        $aprendiz = Aprendice::find($id);
-        return view('aprendice.show', compact('aprendiz'));
-    }
-
-    public function index(){
+        public function index(){
         $aprendices = Aprendice::all();
         return view('aprendice.index', compact('aprendices'));
     }
@@ -40,5 +35,22 @@ class AprendiceController extends Controller
     public function store(Request $request) {
         $aprendiz = Aprendice::create($request->all());
         return $aprendiz;
+    }
+
+    public function show($id){
+        $aprendiz = Aprendice::find($id);
+        return view('aprendice.show', compact('aprendiz'));
+    }
+
+    public function edit($id){
+        $aprendiz = Aprendice::findOrFail($id);
+        return view('aprendice.edit', compact('aprendiz'));
+    }
+
+    public function update(Request $request, $id ){
+        $aprendiz = Aprendice::finOrFail($id);
+        $aprendiz->update($request->all());
+
+        return redirect()->route('aprendice.list')->with('success', 'Aprendiz actualizado correctamente');
     }
 }

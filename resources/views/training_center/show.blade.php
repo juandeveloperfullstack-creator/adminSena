@@ -5,9 +5,8 @@
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Detalle del Centro de formación #{{ $centro->id }}</h5>
-            <a href="{{ route('training_center.list') }}" class="btn btn-sm btn-light">Volver</a>
         </div>
-        
+
         {{-- Aquí estaba el detalle: agregamos el 'div' --}}
         <div class="card-body">
             <div class="mb-3">

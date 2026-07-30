@@ -3,7 +3,7 @@
 @section('content')
     <hr class="text-muted opacity-25">
 
-    <h2><strong>Lista aprendiz</strong></h2>
+    <h2><strong>Lista de aprendices</strong></h2>
     <div class ="container">
 
     <table id="idaprendice" class="table table-striped table-bordered" style="width:100%">
@@ -30,7 +30,10 @@
             <td>{{ $aprendice->cell_number}}</td>
             <td>{{ $aprendice->course_id}}</td>
             <td>{{ $aprendice->computer_id}}</td>
-            <td><a href="{{ route('aprendice.show', $aprendice->id) }}">Mostrar</a></td>
+            <td><a href="{{ route('aprendice.show', $aprendice->id) }}" class="btn btn-success"><i class="bi bi-eye"></i>
+            </a>
+            <a href="{{ route('aprendice.edit', $aprendice->id) }}" class="btn  btn-warning text-white"><i class="bi bi-pencil"></i></a>
+            </td>
             <br>
         </tr>
         @endforeach

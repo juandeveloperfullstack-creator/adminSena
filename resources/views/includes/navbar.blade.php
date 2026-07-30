@@ -22,7 +22,7 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('aprendice.list') }}">Apprentice</a>
+                    <a class="nav-link" href="{{ route('aprendice.list') }}">Apprendice</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
