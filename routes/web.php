@@ -30,6 +30,7 @@ Route::post('area/store',[AreaController::class,'store'])->name('area.store');
 Route::get('area/show/{id}',[AreaController::class,'show'])->name('area.show');
 Route::get('area/{id}/edit', [AreaController::class, 'edit'])->name('area.edit');
 Route::put('area/{id}', [AreaController::class, 'update'])->name('area.update');
+Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
 
 Route::get('training_center/list',[TrainingCenterController::class,'index'])->name('training_center.list');
@@ -40,6 +41,7 @@ Route::get('training_center/{id}/edit', [TrainingCenterController::class, 'edit'
 Route::put('training_center/{id}', [TrainingCenterController::class, 'update'])->name('training_center.update');
 
 
+
 Route::get('computer/list',[ComputerController::class,'index'])->name('computer.list');
 Route::get('computer/create',[ComputerController::class,'create'])->name('computer.create');
 Route::post('computer/store',[ComputerController::class,'store'])->name('computer.store');
@@ -47,19 +49,22 @@ Route::get('computer/show/{id}',[ComputerController::class,'show'])->name('compu
 Route::get('computer/{id}/edit', [ComputerController::class, 'edit'])->name('computer.edit');
 Route::put('computer/{id}', [ComputerController::class, 'update'])->name('computer.update');
 
+
 Route::get('teacher/list',[TeacherController::class,'index'])->name('teacher.list');
 Route::get('teacher/create',[TeacherController::class,'create'])->name('teacher.create');
 Route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.store');
 Route::get('teacher/show/{id}',[TeacherController::class,'show'])->name('teacher.show');
-Route::get('teacher/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
+Route::get('teacher/{teacher}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
 Route::put('teacher/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+
 
 Route::get('course/list',[CourseController::class,'index'])->name('course.list');
 Route::get('course/create',[CourseController::class,'create'])->name('course.create');
 Route::post('course/store',[CourseController::class,'store'])->name('course.store');
 Route::get('course/show/{id}',[CourseController::class,'show'])->name('course.show');
 Route::get('course/{id}/edit', [CourseController::class, 'edit'])->name('course.edit');
-Route::put('teacher/{id}', [CourseController::class, 'update'])->name('course.update');
+Route::put('course/{id}', [CourseController::class, 'update'])->name('course.update');
+
 
 
 Route::get('aprendice/list',[AprendiceController::class,'index'])->name('aprendice.list');
@@ -68,4 +73,5 @@ Route::post('aprendice/store',[AprendiceController::class,'store'])->name('apren
 Route::get('aprendice/show/{id}',[AprendiceController::class,'show'])->name('aprendice.show');
 Route::get('aprendice/{id}/edit', [AprendiceController::class, 'edit'])->name('aprendice.edit');
 Route::put('aprendice/{id}', [AprendiceController::class, 'update'])->name('aprendice.update');
+
 
