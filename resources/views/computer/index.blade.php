@@ -1,46 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container mt-4">
     <hr class="text-muted opacity-25">
 
     <h2><strong>Lista de computadores</strong></h2>
-    <div class ="container">
 
-    <table id="idaprendice" class="table table-striped table-bordered" style="width:100%">
+    <!-- Botón fuera de la tabla -->
+    <div class="mb-3">
+        <a href="{{ route('computer.create') }}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Nuevo Computador
+        </a>
+    </div>
+
+    <table id="idcomputer" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numero</th>
+                <th>ID</th>
+                <th>Número</th>
                 <th>Marca</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <a href="{{ route('computer.create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-circle"></i> Nuevo Producto
-                </a>
-        @foreach($computadores as $computador)
-        <tr>
-            <br>
-            <td>{{ $computador->id}}</td>
-            <td>{{ $computador->number}}</td>
-            <td>{{ $computador->brand}}</td>
-            <td><a href="{{ route('computer.show', $computador->id) }}" class="btn btn-success"><i class="bi bi-eye"></i>
-            </a>
-            <a href="{{ route('computer.edit', $computador->id) }}" class="btn  btn-warning text-white"><i class="bi bi-pencil"></i></a>
+            @foreach($computadores as $computador)
+            <tr>
+                <td>{{ $computador->id }}</td>
+                <td>{{ $computador->number }}</td>
+                <td>{{ $computador->brand }}</td>
+                <td>
+                    <a href="{{ route('computer.show', $computador->id) }}" class="btn btn-sm btn-success">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="{{ route('computer.edit', $computador->id) }}" class="btn btn-sm btn-warning text-white">
+                        <i class="bi bi-pencil"></i>
+                    </a>
 
-            <form action="{{ route('computer.destroy', $computador->id) }}" method="POST" class="d-inline">
+                    <form action="{{ route('computer.destroy', $computador->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar este computador?')">
                             <i class="bi bi-trash"></i>
                         </button>
                     </form>
-            </td>
-            <br>
-        </tr>
-        @endforeach
+                </td>
+            </tr>
+            @endforeach
         </tbody>
-        </table>
-        </div>
-
+    </table>
+</div>
 @endsection

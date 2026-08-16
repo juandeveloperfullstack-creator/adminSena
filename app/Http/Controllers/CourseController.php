@@ -31,7 +31,7 @@ class CourseController extends Controller
 
 
     public function index(){
-        $cursos = Course::all();
+        $cursos = Course::with(['area', 'trainingCenter'])->get();
         return view('course.index', compact('cursos'));
     }
 
@@ -48,7 +48,7 @@ class CourseController extends Controller
     }
 
     public function show($id){
-        $curso = Course::find($id);
+        $curso = Course::with([ 'area', 'trainingCenter'])->findOrFail($id);
         return view('course.show', compact('curso'));
     }
 

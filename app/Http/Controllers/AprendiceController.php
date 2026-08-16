@@ -20,7 +20,7 @@ class AprendiceController extends Controller
     } */
 
         public function index(){
-        $aprendices = Aprendice::all();
+        $aprendices = Aprendice::with([ 'course', 'computer' ])->get();
         return view('aprendice.index', compact('aprendices'));
     }
 
@@ -38,7 +38,7 @@ class AprendiceController extends Controller
     }
 
     public function show($id){
-        $aprendiz = Aprendice::find($id);
+        $aprendiz = Aprendice::with([ 'course', 'computer' ])->findOrFail($id);
         return view('aprendice.show', compact('aprendiz'));
     }
 

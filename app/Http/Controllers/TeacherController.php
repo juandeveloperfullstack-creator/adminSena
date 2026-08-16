@@ -27,7 +27,7 @@ class TeacherController extends Controller
     } */
 
     public function index(){
-        $profes = Teacher::all();
+        $profes = Teacher::with(['area', 'trainingCenter'])->get();
         return view('teacher.index', compact('profes'));
     }
 
@@ -44,7 +44,7 @@ class TeacherController extends Controller
     }
 
     public function show($id){
-        $profesor = Teacher::find($id);
+        $profesor = Teacher::with(['area', 'trainingCenter'])->findOrFail($id);
         return view('teacher.show', compact('profesor'));
     }
 

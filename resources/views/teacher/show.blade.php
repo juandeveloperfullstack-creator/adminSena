@@ -25,12 +25,12 @@
 
             <div class="mb-3">
                 <label class="form-label text-muted fw-bold">Area:</label>
-                <p class="fs-5">{{ $profesor->area_id }}</p>
+                <p class="fs-5">{{ $profesor->area?->name ?? 'Sin Area' }}</p>
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-muted fw-bold">Centro de Formación:</label>
-                <p class="fs-5">{{ $profesor->training_center_id }}</p>
+                <p class="fs-5">{{ $profesor->trainingCenter?->name ?? 'Sin Centro' }}</p>
             </div>
         </div>
 

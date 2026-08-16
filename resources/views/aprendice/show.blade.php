@@ -30,12 +30,12 @@
 
             <div class="mb-3">
                 <label class="form-label text-muted fw-bold">Curso del Aprendiz:</label>
-                <p class="fs-5">{{ $aprendiz->course_id }}</p>
+                <p class="fs-5">{{ $aprendiz->course?->course_number ?? 'Sin Curso' }}</p>
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-muted fw-bold">Computador del Aprendiz:</label>
-                <p class="fs-5">{{ $aprendiz->computer_id }}</p>
+                <p class="fs-5">{{ $aprendiz->computer?->brand ?? 'Sin Computador' }}</p>
             </div>
         </div>
 

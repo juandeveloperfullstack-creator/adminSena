@@ -11,12 +11,12 @@ class Course extends Model
 
     // Un curso pertenece a una area
     public function area(){
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(Area::class, 'area_id');
     }
 
     // Un curso pertenece a un centro de formacion
-    public function training_center(){
-        return $this->belongsTo(Training_center::class);
+    public function trainingCenter(){
+        return $this->belongsTo(Training_center::class, 'training_center_id');
     }
 
     // Un curso tiene muchos aprendices
