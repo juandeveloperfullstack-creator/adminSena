@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h5>Contacto</h5>
-                <p>Academia de Taekwondo<br>
+                <p>
                     Dirección: [Tu dirección]<br>
                     Teléfono: [Tu teléfono]<br>
                     Correo electrónico: [Tu correo electrónico]</p>

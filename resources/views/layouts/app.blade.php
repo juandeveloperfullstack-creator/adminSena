@@ -5,16 +5,17 @@
     <title>AdminSena</title>
     @include('includes.dependencias')
 </head>
-<body class="d-flex flex-column min-vh-100">
 
-@include('includes.navbar')
+<body class="d-flex flex-column min-vh-100" style="background-color: #eef7f2;">
 
-@if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @include('includes.navbar')
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <main class="flex-fill container my-5">
         @yield('content')
