@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<div class="p-4 bg-white rounded-3 shadow-sm">
     <hr class="text-muted opacity-25">
 
     <h2><strong>Lista de profesores</strong></h2>

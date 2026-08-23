@@ -10,6 +10,17 @@
 
     @include('includes.navbar')
 
+    <style>
+    
+    .active-nav-item {
+        background-color: #ffffff !important;
+        color: #39a900 !important;
+        font-weight: bold;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+</style>
+
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
