@@ -40,7 +40,7 @@ class TeacherController extends Controller
 
     public function store(Request $request) {
         $teacher = Teacher::create($request->all());
-        return $teacher;
+        return redirect()->route('teacher.list')->with('success', 'Profesor almacenado correctamente');
     }
 
     public function show($id){

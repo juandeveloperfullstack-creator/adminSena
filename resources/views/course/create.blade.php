@@ -1,70 +1,100 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card p-4 shadow-sm"
-        style="border-radius: 40px 0px 40px 0px; max-width: 480px; margin: 0 auto; border: 1px solid #e0e0e0;">
-        <h2 class="text-center text-secondary mb-3" style="font-family: sans-serif; font-weight: 400;">
-            Form<span style="color: #f0a030;">Course</span>
-        </h2>
-        <hr class="text-muted opacity-25">
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
 
-        <form action="{{ route('course.store') }}" method="POST">
-            @csrf
+            <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
 
-
-            <div class="mb-3">
-                <label for="full_name" class="form-label fw-semibold text-secondary small">Numero del curso:</label>
-                <div class="input-group shadow-sm-inset">
-                    <span class="input-group-text bg-white text-muted border-end-0"> <i
-                            class="bi bi-caret-right-fill"></i></span>
-                    <input type="number" name="course_number" id="course_number" class="form-control border-start-0 ps-1"
-                        placeholder="Numero">
+                <!-- Encabezado SENA -->
+                <div class="card-header text-white text-center py-3" style="background-color: #39a900;">
+                    <h4 class="mb-0 fw-bold">Registrar Curso</h4>
                 </div>
 
-                <div class="mb-3">
-                    <label for="full_name" class="form-label fw-semibold text-secondary small">Dia:</label>
-                    <div class="input-group shadow-sm-inset">
-                        <span class="input-group-text bg-white text-muted border-end-0"> <i
-                                class="bi bi-caret-right-fill"></i></span>
-                        <input type="text" name="day" id="day" class="form-control border-start-0 ps-1"
-                            placeholder="Dia">
-                    </div>
+                <!-- Formulario -->
+                <div class="card-body p-4 bg-white">
+                    <form action="{{ route('course.store') }}" method="POST">
+                        @csrf
 
-                    <div class="mb-3">
-                        <label for="full_name" class="form-label fw-semibold text-secondary small">Seleciona el
-                            area:</label>
-                            <div class="input-group shadow-sm-inset">
-                                <span class="input-group-text bg-white text-muted border-end-0"> <i
-                                class="bi bi-caret-right-fill"></i></span>
-                        <select name="area_id" id="area_id">
-                            <option value="">Selecciona un area</option>
+                        <!-- Número del Curso -->
+                        <div class="mb-3">
+                            <label for="course_number" class="form-label fw-semibold text-secondary small">
+                                Número del curso:
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-hash"></i>
+                                </span>
+                                <input type="number" name="course_number" id="course_number" class="form-control border-start-0" placeholder="Ej: 2670123" required>
+                            </div>
+                        </div>
 
-                            @foreach ($areas as $area)
-                                <option value="{{ $area->id }}">{{ $area->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <!-- Día -->
+                        <div class="mb-3">
+                            <label for="day" class="form-label fw-semibold text-secondary small">
+                                Día:
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-calendar-event"></i>
+                                </span>
+                                <input type="text" name="day" id="day" class="form-control border-start-0" placeholder="Ej: Lunes a Viernes" required>
+                            </div>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="full_name" class="form-label fw-semibold text-secondary small">Seleciona un centro de formación:</label>
-                            <div class="input-group shadow-sm-inset">
-                                <span class="input-group-text bg-white text-muted border-end-0"> <i
-                                class="bi bi-caret-right-fill"></i></span>
-                        <select name="training_center_id" id="training_center_id">
-                            <option value="">Centro de formacion</option>
+                        <!-- Área -->
+                        <div class="mb-3">
+                            <label for="area_id" class="form-label fw-semibold text-secondary small">
+                                Selecciona el área:
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-layers-fill"></i>
+                                </span>
+                                <select name="area_id" id="area_id" class="form-select border-start-0" required>
+                                    <option value="" disabled selected>Selecciona un área...</option>
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                            @foreach ($centers as $center)
-                                <option value="{{ $center->id }}">{{ $center->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <!-- Centro de Formación -->
+                        <div class="mb-4">
+                            <label for="training_center_id" class="form-label fw-semibold text-secondary small">
+                                Selecciona un centro de formación:
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-building"></i>
+                                </span>
+                                <select name="training_center_id" id="training_center_id" class="form-select border-start-0" required>
+                                    <option value="" disabled selected>Selecciona un centro...</option>
+                                    @foreach ($centers as $center)
+                                        <option value="{{ $center->id }}">{{ $center->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
+                        <!-- Botones de Acción -->
+                        <div class="d-flex justify-content-between align-items-center pt-2">
+                            <a href="{{ route('course.list') }}" class="btn btn-outline-secondary px-4 fw-medium">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn text-white px-4 fw-bold" style="background-color: #39a900;">
+                                Guardar Curso
+                            </button>
+                        </div>
 
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn text-white px-5 py-2 fw-semibold"
-                            style="background-color: #cf7357; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Subir</button>
-                    </div>
+                    </form>
                 </div>
-        </form>
+
+            </div>
+
+        </div>
     </div>
+</div>
 @endsection

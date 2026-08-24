@@ -44,7 +44,7 @@ class CourseController extends Controller
 
     public function store(Request $request) {
         $course = Course::create($request->all());
-        return $course;
+        return redirect()->route('course.list')->with('success', 'Curso almacenado correctamente');
     }
 
     public function show($id){

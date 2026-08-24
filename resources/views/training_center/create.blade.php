@@ -1,34 +1,64 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card p-4 shadow-sm" style="border-radius: 40px 0px 40px 0px; max-width: 480px; margin: 0 auto; border: 1px solid #e0e0e0;">
-    <h2 class="text-center text-secondary mb-3" style="font-family: sans-serif; font-weight: 400;">
-        Form<span style="color: #f0a030;">TrainingCenter</span>
-    </h2>
-    <hr class="text-muted opacity-25">
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
 
-    <form action="{{route('training_center.store')}}" method="POST">
-        @csrf
+            <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
 
+                <!-- Encabezado SENA -->
+                <div class="card-header text-white text-center py-3" style="background-color: #39a900;">
+                    <h4 class="mb-0 fw-bold">Registrar Centro de Formación</h4>
+                </div>
 
-        <div class="mb-3">
-            <label for="full_name" class="form-label fw-semibold text-secondary small" >Nombre del centro de formación :</label>
-            <div class="input-group shadow-sm-inset">
-                <span class="input-group-text bg-white text-muted border-end-0"> <i class="bi bi-caret-right-fill"></i></span>
-                <input type="text" name="name" id="name" class="form-control border-start-0 ps-1" placeholder="Centro de formacion">
+                <!-- Formulario -->
+                <div class="card-body p-4 bg-white">
+                    <form action="{{ route('training_center.store') }}" method="POST">
+                        @csrf
+
+                        <!-- Campo Nombre -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold text-secondary small">
+                                Nombre del centro de formación:
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-building"></i>
+                                </span>
+                                <input type="text" name="name" id="name" class="form-control border-start-0" placeholder="Ej: Centro de Comercio y Servicios" required>
+                            </div>
+                        </div>
+
+                        <!-- Campo Localización -->
+                        <div class="mb-4">
+                            <label for="location" class="form-label fw-semibold text-secondary small">
+                                Localización:
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </span>
+                                <input type="text" name="location" id="location" class="form-control border-start-0" placeholder="Ej: Popayán, Cauca" required>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="d-flex justify-content-between align-items-center pt-2">
+                            <a href="{{ route('training_center.list') }}" class="btn btn-outline-secondary px-4 fw-medium">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="btn text-white px-4 fw-bold" style="background-color: #39a900;">
+                                Guardar Centro
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
             </div>
 
-            <div class="mb-3">
-            <label for="full_name" class="form-label fw-semibold text-secondary small" >Localización :</label>
-            <div class="input-group shadow-sm-inset">
-                <span class="input-group-text bg-white text-muted border-end-0"> <i class="bi bi-caret-right-fill"></i></span>
-                <input type="text" name="location" id="location" class="form-control border-start-0 ps-1" placeholder="Localización">
-            </div>
-
-            <div class="text-center mt-4">
-            <button type="submit" class="btn text-white px-5 py-2 fw-semibold" style="background-color: #cf7357; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Subir</button>
         </div>
-        </div>
-    </form>
+    </div>
 </div>
 @endsection

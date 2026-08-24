@@ -5,13 +5,27 @@
     <title>AdminSena</title>
     @include('includes.dependencias')
 </head>
-
+<style>
+    
+    .modal-backdrop-custom {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        z-index: 1050;
+        padding: 20px;
+    }
+</style>
 <body class="d-flex flex-column min-vh-100" style="background-color: #eef7f2;">
 
     @include('includes.navbar')
 
     <style>
-    
+
     .active-nav-item {
         background-color: #ffffff !important;
         color: #39a900 !important;

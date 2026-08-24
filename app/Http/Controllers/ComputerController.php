@@ -24,7 +24,7 @@ class ComputerController extends Controller
     public function store(Request $request){
 
     $computer = Computer::create($request->all());
-    return $computer;
+    return redirect()->route('computer.list')->with('success', 'Computador almacenado correctamente');
     }
 
     public function show($id){

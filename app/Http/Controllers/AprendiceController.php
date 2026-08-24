@@ -34,7 +34,7 @@ class AprendiceController extends Controller
 
     public function store(Request $request) {
         $aprendiz = Aprendice::create($request->all());
-        return $aprendiz;
+        return redirect()->route('aprendice.list')->with('success', 'Aprendiz almacenado correctamente');
     }
 
     public function show($id){
