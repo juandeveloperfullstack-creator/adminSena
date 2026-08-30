@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('Home');
 });
 
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
 
 Route::get('area/list',[AreaController::class,'index'])->name('area.list');
 Route::get('area/create',[AreaController::class,'create'])->name('area.create');
