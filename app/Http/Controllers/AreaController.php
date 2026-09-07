@@ -17,52 +17,53 @@ class AreaController extends Controller
         return $area->courses;
     } */
 
+    //
 
-
-    /* GET /api/areas */
     public function index()
     {
         $areas = Area::all();
-        return response()->json($areas, 200);
+        return view('area.index', compact('areas'));
     }
 
-    /* POST /api/areas */
+    public function create()
+    {
+        return view('area.create');
+    }
+
     public function store(Request $request)
     {
         $area = Area::create($request->all());
-        return response()->json([
-            'message' => 'Area almacenada correctamente',
-            'data' => $area
-        ], 201);
+        return redirect()->route('area.list')->with('success', 'Area almacenado correctamente');
     }
 
-    /* GET /api/areas{id} */
     public function show($id)
     {
-        $area = Area::findOrFail($id);
-        return response()->json($area, 200);
+        $area = Area::find($id);
+        return view('area.show', compact('area'));
     }
 
-    /* PUT/PATCH /api/areas/{id} */
+
+    public function edit($id)
+    {
+        $area = Area::findOrFail($id);
+        return view('area.edit', compact('area'));
+    }
+
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
         $area = Area::findOrFail($id);
         $area->update($request->all());
 
-        return response()->json([
-            'message' => 'Area actualizada correctamente',
-            'data' => $area
-        ], 200);
+        return redirect()->route('area.list')->with('success', 'Area actualizada correctamente');
     }
 
-    /* DELETE /api/areas/{id} */
-    public function destroy($id)
+    public function destroy(Area $area)
     {
-        $area = Area::findOrFail($id);
         $area->delete();
-
-        return response()->json([
-            'message' => 'Area eliminada'
-        ], 200);
+        return redirect()->route('area.list')->with('success', 'Area eliminada con exito');
     }
 }

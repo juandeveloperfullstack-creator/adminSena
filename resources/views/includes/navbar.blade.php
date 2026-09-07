@@ -28,7 +28,11 @@
             Gestión Administrativa
         </a>
         <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-            
+            <li>
+                <a class="dropdown-item py-2 {{ request()->routeIs('area.*') ? 'fw-bold text-success' : '' }}" href="{{ route('area.list') }}">
+                    <i class="bi bi-diagram-3 me-2 text-success"></i> Áreas
+                </a>
+            </li>
             <li>
                 <a class="dropdown-item py-2 {{ request()->routeIs('training_center.*') ? 'fw-bold text-success' : '' }}" href="{{ route('training_center.list') }}">
                     <i class="bi bi-building me-2 text-success"></i> Centros de Formación

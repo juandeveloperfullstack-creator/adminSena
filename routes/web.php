@@ -23,12 +23,14 @@ Route::get('/', function () {
     return view('Home');
 });
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
 
-
-
+Route::get('area/list',[AreaController::class,'index'])->name('area.list');
+Route::get('area/create',[AreaController::class,'create'])->name('area.create');
+Route::post('area/store',[AreaController::class,'store'])->name('area.store');
+Route::get('area/show/{id}',[AreaController::class,'show'])->name('area.show');
+Route::get('area/{id}/edit', [AreaController::class, 'edit'])->name('area.edit');
+Route::put('area/{id}', [AreaController::class, 'update'])->name('area.update');
+Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
 
 Route::get('training_center/list',[TrainingCenterController::class,'index'])->name('training_center.list');
