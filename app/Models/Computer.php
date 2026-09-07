@@ -15,4 +15,8 @@ class Computer extends Model
     }
 
     protected $fillable = ['number', 'brand'];
+
+    protected $guarded = [
+        'urlFoto'
+    ];
 }

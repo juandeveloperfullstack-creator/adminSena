@@ -14,7 +14,7 @@
 
                 <!-- Formulario -->
                 <div class="card-body p-4 bg-white">
-                    <form action="{{ route('computer.store') }}" method="POST">
+                    <form action="{{ route('computer.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <!-- Campo Número -->
@@ -43,6 +43,10 @@
                             </div>
                         </div>
 
+                        <div class="mb-4">
+                            <label for="urlFoto" class="form-label fw-semibold text-secondary small">Foto del computador:</label>
+                            <input type="file" name="urlFoto" id="urlFoto" class="form-control" accept="image/*">
+                        </div>
                         <!-- Botones de Acción -->
                         <div class="d-flex justify-content-between align-items-center pt-2">
                             <a href="{{ route('computer.list') }}" class="btn btn-outline-secondary px-4 fw-medium">
