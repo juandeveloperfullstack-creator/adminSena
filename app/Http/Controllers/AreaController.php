@@ -17,53 +17,52 @@ class AreaController extends Controller
         return $area->courses;
     } */
 
-    //
 
+
+    /* GET /api/areas */
     public function index()
     {
         $areas = Area::all();
-        return view('area.index', compact('areas'));
+        return response()->json($areas, 200);
     }
 
-    public function create()
-    {
-        return view('area.create');
-    }
-
+    /* POST /api/areas */
     public function store(Request $request)
     {
         $area = Area::create($request->all());
-        return redirect()->route('area.list')->with('success', 'Area almacenado correctamente');
+        return response()->json([
+            'message' => 'Area almacenada correctamente',
+            'data' => $area
+        ], 201);
     }
 
+    /* GET /api/areas{id} */
     public function show($id)
     {
-        $area = Area::find($id);
-        return view('area.show', compact('area'));
-    }
-
-
-    public function edit($id)
-    {
         $area = Area::findOrFail($id);
-        return view('area.edit', compact('area'));
+        return response()->json($area, 200);
     }
 
+    /* PUT/PATCH /api/areas/{id} */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-
         $area = Area::findOrFail($id);
         $area->update($request->all());
 
-        return redirect()->route('area.list')->with('success', 'Area actualizada correctamente');
+        return response()->json([
+            'message' => 'Area actualizada correctamente',
+            'data' => $area
+        ], 200);
     }
 
-    public function destroy(Area $area)
+    /* DELETE /api/areas/{id} */
+    public function destroy($id)
     {
+        $area = Area::findOrFail($id);
         $area->delete();
-        return redirect()->route('area.list')->with('success', 'Area eliminada con exito');
+
+        return response()->json([
+            'message' => 'Area eliminada'
+        ], 200);
     }
 }
