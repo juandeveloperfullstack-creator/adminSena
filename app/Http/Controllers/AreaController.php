@@ -22,7 +22,7 @@ class AreaController extends Controller
     public function index()
     {
         $areas = Area::all();
-        return view('area.index', compact('areas'));
+        return response()->json($areas, 200);
     }
 
     public function create()

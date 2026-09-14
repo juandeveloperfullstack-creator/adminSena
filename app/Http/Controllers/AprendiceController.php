@@ -21,7 +21,7 @@ class AprendiceController extends Controller
 
         public function index(){
         $aprendices = Aprendice::with([ 'course', 'computer' ])->get();
-        return view('aprendice.index', compact('aprendices'));
+        return response()->json($aprendices, 200);
     }
 
     public function create() {

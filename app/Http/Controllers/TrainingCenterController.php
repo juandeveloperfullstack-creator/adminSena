@@ -20,7 +20,7 @@ class TrainingCenterController extends Controller
 
     public function index(){
         $centros = Training_center::all();
-        return view('training_center.index', compact('centros'));
+        return response()->json($centros, 200);
     }
 
     public function create (){

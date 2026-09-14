@@ -32,7 +32,7 @@ class CourseController extends Controller
 
     public function index(){
         $cursos = Course::with(['area', 'trainingCenter'])->get();
-        return view('course.index', compact('cursos'));
+        return response()->json($cursos, 200);
     }
 
     public function create() {

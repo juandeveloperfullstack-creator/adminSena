@@ -28,7 +28,7 @@ class TeacherController extends Controller
 
     public function index(){
         $profes = Teacher::with(['area', 'trainingCenter'])->get();
-        return view('teacher.index', compact('profes'));
+        return response()->json($profes, 200);
     }
 
     public function create() {
