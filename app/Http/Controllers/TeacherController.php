@@ -27,42 +27,56 @@ class TeacherController extends Controller
     } */
 
     public function index(){
-        $profes = Teacher::with(['area', 'trainingCenter'])->get();
-        return response()->json($profes, 200);
+        $teachers = Teacher::all();
+        return response()->json($teachers, 200);
     }
 
-    public function create() {
-        $areas = Area::all();
-        $centers = Training_center::all();
-
-        return view('teacher.create', compact('areas', 'centers'));
-    }
-
+    // GUARDAR DATOS
     public function store(Request $request) {
-        $teacher = Teacher::create($request->all());
-        return redirect()->route('teacher.list')->with('success', 'Profesor almacenado correctamente');
+
+        $validated = $request->validate([
+        'name'               => 'required|string|max:100',
+        'email'              => 'required|email|max:100|unique:teachers,email',
+        'area_id'            => 'nullable|integer|exists:areas,id',
+        'training_center_id' => 'nullable|integer|exists:training_centers,id',
+    ]);
+
+        $teacher = Teacher::create($validated);
+
+        return response()->json($teacher, 201);
+    }
+    // MOSTRAR UN REGISTRO
+    public function show($id) {
+
+        $teacher = Teacher::findOrFail($id);
+
+        return response()->json($teacher, 200);
+    }
+    // ACTUALIZAR UN REGISTRO
+    public function update(Request $request, $id) {
+
+    $teacher = Teacher::findOrFail($id);
+
+    $validated = $request->validate([
+        'name'               => 'required|string|max:100',
+        'email'              => 'required|email|max:100|unique:teachers,email,' . $id,
+        'area_id'            => 'nullable|integer|exists:areas,id',
+        'training_center_id' => 'nullable|integer|exists:training_centers,id',
+    ]);
+
+    $teacher->update($validated);
+    
+    return response()->json($teacher, 200);
     }
 
-    public function show($id){
-        $profesor = Teacher::with(['area', 'trainingCenter'])->findOrFail($id);
-        return view('teacher.show', compact('profesor'));
-    }
+    // ELIMINAR UN REGISTRO
+    public function destroy($id) {
 
-    public function edit(Teacher $teacher){
-        $areas = Area::all();
-        $centros = Training_center::all();
-        return view('teacher.edit', compact('teacher', 'areas', 'centros'));
-    }
+        $teacher = Teacher::findOrFail($id);
 
-    public function update(Request $request, Teacher $teacher){
-        $teacher->update($request->all());
-
-        return redirect()->route('teacher.list')->with('success', 'Profesor actualizado correctamente');
-    }
-
-    public function destroy(Teacher $teacher){
         $teacher->delete();
-        return redirect()->route('teacher.list')->with('success', 'Profesor eliminado con exito');
+
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
 }
 

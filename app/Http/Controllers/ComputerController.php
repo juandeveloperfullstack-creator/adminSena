@@ -12,22 +12,25 @@ class ComputerController extends Controller
         return $compu->aprendices;
     } */
 
-    public function index(){
-        $computadores = Computer::all();
-        return response()->json($computadores, 200);
+        public function index(){
+
+        $computer = Computer::all();
+
+        return response()->json($computer, 200);
     }
 
-    public function create (){
-    return view('computer.create');
-    }
+    // GUARDAR DATOS
+    public function store(Request $request) {
 
-    public function store(Request $request)
-{
-    
-    $computer = Computer::create($request->all());
+        $validated = $request->validate([
+            'number' => 'required|numeric',
+            'brand' => 'required|string|max:225',
+            'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    // 2. Procesar la imagen solo si se adjuntó un archivo
-    if ($request->hasFile('urlFoto')) {
+        $computer = Computer::create($validated);
+
+        if ($request->hasFile('urlFoto')) {
         $file = $request->file('urlFoto');
         $nombreArchivo = "foto_" . time() . "." . $file->guessExtension();
 
@@ -39,29 +42,39 @@ class ComputerController extends Controller
         $computer->save();
     }
 
-    return redirect()->route('computer.list')->with('success', 'Computador almacenado correctamente');
-}
+        return response()->json($computer, 201);
+    }
+    // MOSTRAR UN REGISTRO
+    public function show($id) {
 
-    public function show($id){
-        $computer = Computer::find($id);
-        return view('computer.show', compact('computer'));
+        $computer = Computer::findOrFail($id);
+
+        return response()->json($computer, 200);
+    }
+    // ACTUALIZAR UN REGISTRO
+    public function update(Request $request, $id) {
+
+    $computer = Computer::findOrFail($id);
+
+    $validated = $request->validate([
+            'number' => 'required|numeric',
+            'brand' => 'required|string|max:225',
+            'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+    $computer->update($validated);
+    
+    return response()->json($computer, 200);
     }
 
-    public function edit($id){
-        $compu = Computer::findOrFail($id);
-        return view('computer.edit', compact('compu'));
-    }
+    // ELIMINAR UN REGISTRO
+    public function destroy($id) {
 
-    public function update(Request $request, $id){
-        $compu = Computer::findOrFail($id);
-        $compu->update($request->all());
+        $computer = Computer::findOrFail($id);
 
-        return redirect()->route('computer.list')->with('success', 'Computador actualizado correctamente');
-    }
-
-    public function destroy(Computer $computer){
         $computer->delete();
-        return redirect()->route('computer.list')->with('success', 'Computador eliminado con exito');
-    }
 
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
+    }
 }
+

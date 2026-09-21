@@ -23,10 +23,15 @@ use App\Http\Controllers\TeacherController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// RUTA AREAS
 Route::apiResource('areas', AreaController::class);
+// RUTA CENTERS
 Route::apiResource('centers', TrainingCenterController::class);
+// RUTA COMPUTERS
 Route::apiResource('computers', ComputerController::class);
+// RUTA TEACHERS
 Route::apiResource('teachers', TeacherController::class);
+// RUTA COURSES
 Route::apiResource('courses', CourseController::class);
+// RUTA APRENDICES
 Route::apiResource('aprendices', AprendiceController::class);

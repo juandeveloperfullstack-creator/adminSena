@@ -20,42 +20,57 @@ class AprendiceController extends Controller
     } */
 
         public function index(){
-        $aprendices = Aprendice::with([ 'course', 'computer' ])->get();
+        $aprendices = Aprendice::all();
         return response()->json($aprendices, 200);
     }
 
-    public function create() {
-        $courses = Course::all();
-
-        $computers = Computer::whereDoesntHave('aprendice')->get();
-
-        return view('aprendice.create', compact('courses', 'computers'));
-    }
-
+    // GUARDAR DATOS
     public function store(Request $request) {
-        $aprendiz = Aprendice::create($request->all());
-        return redirect()->route('aprendice.list')->with('success', 'Aprendiz almacenado correctamente');
+
+        $validated = $request->validate([
+        'name'        => 'required|string|max:100',
+        'email'       => 'required|email|max:100|unique:aprendices,email',
+        'cell_number' => 'required|string|max:15',
+        'course_id'   => 'nullable|integer|exists:courses,id',
+        'computer_id' => 'nullable|integer|exists:computers,id|unique:aprendices,computer_id',
+    ]);
+
+        $aprendice = Aprendice::create($validated);
+
+        return response()->json($aprendice, 201);
+    }
+    // MOSTRAR UN REGISTRO
+    public function show($id) {
+
+        $aprendice = Aprendice::findOrFail($id);
+
+        return response()->json($aprendice, 200);
+    }
+    // ACTUALIZAR UN REGISTRO
+    public function update(Request $request, $id) {
+
+    $aprendice = Aprendice::findOrFail($id);
+
+    $validated = $request->validate([
+        'name'        => 'required|string|max:100',
+        'email'       => 'required|email|max:100|unique:aprendices,email,' . $id,
+        'cell_number' => 'required|string|max:15',
+        'course_id'   => 'nullable|integer|exists:courses,id',
+        'computer_id' => 'nullable|integer|exists:computers,id|unique:aprendices,computer_id,' . $id,
+    ]);
+
+    $aprendice->update($validated);
+    
+    return response()->json($aprendice, 200);
     }
 
-    public function show($id){
-        $aprendiz = Aprendice::with([ 'course', 'computer' ])->findOrFail($id);
-        return view('aprendice.show', compact('aprendiz'));
-    }
+    // ELIMINAR UN REGISTRO
+    public function destroy($id) {
 
-    public function edit(Aprendice $aprendice){
-        $cursos = Course::all();
-        $compus = Computer::all();
-        return view('aprendice.edit', compact('aprendice', 'cursos', 'compus'));
-    }
+        $aprendice = Aprendice::findOrFail($id);
 
-    public function update(Request $request, Aprendice $aprendice){
-        $aprendice->update($request->all());
-
-        return redirect()->route('aprendice.list')->with('success', 'Aprendiz actualizado correctamente');
-    }
-
-    public function destroy(Aprendice $aprendice){
         $aprendice->delete();
-        return redirect()->route('aprendice.list')->with('success', 'Aaprendiz eliminado con exito');
+
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
 }

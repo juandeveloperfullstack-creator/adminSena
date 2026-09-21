@@ -18,39 +18,55 @@ class TrainingCenterController extends Controller
         return $centro->courses;
     } */
 
+    // MOSTRAR TODOS LOs DATOS
     public function index(){
+
         $centros = Training_center::all();
+
         return response()->json($centros, 200);
     }
 
-    public function create (){
-    return view('training_center.create');
+    // GUARDAR DATOS
+    public function store(Request $request) {
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+            'location' => 'required|string|max:225',
+        ]);
+
+        $centros = Training_center::create($validated);
+
+        return response()->json($centros, 201);
+    }
+    // MOSTRAR UN REGISTRO
+    public function show($id) {
+
+        $centro = Training_center::findOrFail($id);
+
+        return response()->json($centro, 200);
+    }
+    // ACTUALIZAR UN REGISTRO
+    public function update(Request $request, $id) {
+
+    $centro = Training_center::findOrFail($id);
+
+    $validated = $request->validate([
+        'name' => 'required|string|max:100',
+        'location' => 'required|string|max:225',
+    ]);
+
+    $centro->update($validated);
+    
+    return response()->json($centro, 200);
     }
 
-    public function store(Request $request){
-        $training = Training_center::create($request->all());
-    return redirect()->route('training_center.list')->with('success', 'Centro de formacion almacenado correctamente');
-    }
+    // ELIMINAR UN REGISTRO
+    public function destroy($id) {
 
-    public function show($id){
-        $centro = Training_center::find($id);
-        return view('training_center.show', compact('centro'));
-    }
+        $centro = Training_center::findOrFail($id);
 
-    public function edit($id){
-        $center = Training_center::findOrFail($id);
-        return view('training_center.edit', compact('center'));
-    }
+        $centro->delete();
 
-    public function update(Request $request, $id){
-        $center = Training_center::findOrFail($id);
-        $center->update($request->all());
-
-        return redirect()->route('training_center.list')->with('success', 'Centro de formacion actualizado correctamente');
-    }
-
-    public function destroy(Training_center $training_center){
-        $training_center->delete();
-        return redirect()->route('training_center.list')->with('success', 'centro de formacion eliminado con exito');
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
 }

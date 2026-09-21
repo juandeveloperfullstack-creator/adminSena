@@ -29,44 +29,57 @@ class CourseController extends Controller
         return $curso->teachers;
     } */
 
-
+        // MOSTRAR TODOS LOS DATOS
     public function index(){
-        $cursos = Course::with(['area', 'trainingCenter'])->get();
+        $cursos = Course::all();
         return response()->json($cursos, 200);
     }
 
-    public function create() {
-        $areas = Area::all();
-        $centers = Training_center::all();
-
-        return view('course.create', compact('areas', 'centers'));
-    }
-
+    // GUARDAR DATOS
     public function store(Request $request) {
-        $course = Course::create($request->all());
-        return redirect()->route('course.list')->with('success', 'Curso almacenado correctamente');
+
+        $validated = $request->validate([
+        'course_number'      => 'required|string|max:255',
+        'day'                => 'required|string|max:50',
+        'area_id'            => 'nullable|integer|exists:areas,id',
+        'training_center_id' => 'nullable|integer|exists:training_centers,id',
+    ]);
+
+        $curso = Course::create($validated);
+
+        return response()->json($curso, 201);
+    }
+    // MOSTRAR UN REGISTRO
+    public function show($id) {
+
+        $curso = Course::findOrFail($id);
+
+        return response()->json($curso, 200);
+    }
+    // ACTUALIZAR UN REGISTRO
+    public function update(Request $request, $id) {
+
+    $curso = Course::findOrFail($id);
+
+    $validated = $request->validate([
+        'course_number'      => 'required|string|max:255',
+        'day'                => 'required|string|max:50',
+        'area_id'            => 'nullable|integer|exists:areas,id',
+        'training_center_id' => 'nullable|integer|exists:training_centers,id',
+    ]);
+
+    $curso->update($validated);
+    
+    return response()->json($curso, 200);
     }
 
-    public function show($id){
-        $curso = Course::with([ 'area', 'trainingCenter'])->findOrFail($id);
-        return view('course.show', compact('curso'));
+    // ELIMINAR UN REGISTRO
+    public function destroy($id) {
+
+        $curso = Course::findOrFail($id);
+
+        $curso->delete();
+
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
-
-    public function edit(Course $course){
-        $areas = Area::all();
-        $centros = Training_center::all();
-        return view('course.edit', compact('course', 'areas', 'centros'));
-    }
-
-    public function update(Request $request, Course $course){
-        $course->update($request->all());
-
-        return redirect()->route('course.list')->with('success', 'Curso actualizado correctamente');
-    }
-
-    public function destroy(Course $course){
-        $course->delete();
-        return redirect()->route('course.list')->with('success', 'Curso eliminado con exito');
-    }
-
 }

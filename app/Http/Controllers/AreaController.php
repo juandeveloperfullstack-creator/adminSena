@@ -17,53 +17,54 @@ class AreaController extends Controller
         return $area->courses;
     } */
 
-    //
-
-    public function index()
-    {
+    // MOSTRAR TODOS LOS DATOS
+    public function index(){
         $areas = Area::all();
         return response()->json($areas, 200);
     }
 
-    public function create()
-    {
-        return view('area.create');
-    }
+    // GUARDAR DATOS
+    public function store(Request $request) {
 
-    public function store(Request $request)
-    {
-        $area = Area::create($request->all());
-        return redirect()->route('area.list')->with('success', 'Area almacenado correctamente');
-    }
-
-    public function show($id)
-    {
-        $area = Area::find($id);
-        return view('area.show', compact('area'));
-    }
-
-
-    public function edit($id)
-    {
-        $area = Area::findOrFail($id);
-        return view('area.edit', compact('area'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|max:255',
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
         ]);
 
-        $area = Area::findOrFail($id);
-        $area->update($request->all());
+        $area = Area::create($validated);
 
-        return redirect()->route('area.list')->with('success', 'Area actualizada correctamente');
+        return response()->json($area, 201);
+    }
+    // MOSTRAR UN REGISTRO
+    public function show($id) {
+
+        $area = Area::findOrFail($id);
+
+        return response()->json($area, 200);
+    }
+    // ACTUALIZAR UN REGISTRO
+    public function update(Request $request, $id) {
+
+    $area = Area::findOrFail($id);
+
+    $validated = $request->validate([
+        'name' => 'required|string|max:100',
+    ]);
+
+    $area->update($validated);
+    
+    return response()->json($area, 200);
     }
 
-    public function destroy(Area $area)
-    {
+    // ELIMINAR UN REGISTRO
+    public function destroy($id) {
+
+        $area = Area::findOrFail($id);
+
         $area->delete();
-        return redirect()->route('area.list')->with('success', 'Area eliminada con exito');
+
+        return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
 }
+
+
+
