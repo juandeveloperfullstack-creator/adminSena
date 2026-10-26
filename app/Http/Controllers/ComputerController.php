@@ -12,7 +12,8 @@ class ComputerController extends Controller
         return $compu->aprendices;
     } */
 
-        public function index(){
+    public function index()
+    {
 
         $computer = Computer::all();
 
@@ -20,58 +21,60 @@ class ComputerController extends Controller
     }
 
     // GUARDAR DATOS
-    public function store(Request $request) 
-{
-    $validated = $request->validate([
-        'number' => 'required|numeric',
-        'brand' => 'required|string|max:225',
-        'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'number' => 'required|numeric',
+            'brand' => 'required|string|max:225',
+            'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $data = $validated;
+        $data = $validated;
 
-    
-    if ($request->hasFile('urlFoto')) {
-        $uploadedFileUrl = $request->file('urlFoto')->storeOnCloudinary('computadores')->getSecureUrl();
-        $data['urlFoto'] = $uploadedFileUrl;
+
+        if ($request->hasFile('urlFoto')) {
+            $uploadedFileUrl = $request->file('urlFoto')->storeOnCloudinary('computadores')->getSecurePath();
+            $data['urlFoto'] = $uploadedFileUrl;
+        }
+
+        $computer = Computer::create($data);
+
+        return response()->json($computer, 201);
     }
-
-    $computer = Computer::create($data);
-
-    return response()->json($computer, 201);
-}
     // MOSTRAR UN REGISTRO
-    public function show($id) {
+    public function show($id)
+    {
 
         $computer = Computer::findOrFail($id);
 
         return response()->json($computer, 200);
     }
     // ACTUALIZAR UN REGISTRO
-    public function update(Request $request, $id) 
-{
-    $computer = Computer::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $computer = Computer::findOrFail($id);
 
-    $validated = $request->validate([
-        'number' => 'required|numeric',
-        'brand' => 'required|string|max:225',
-        'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+        $validated = $request->validate([
+            'number' => 'required|numeric',
+            'brand' => 'required|string|max:225',
+            'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        ]);
 
-    $data = $validated;
+        $data = $validated;
 
-    if ($request->hasFile('urlFoto')) {
-        $uploadedFileUrl = $request->file('urlFoto')->storeOnCloudinary('computadores')->getSecureUrl();
-        $data['urlFoto'] = $uploadedFileUrl;
+        if ($request->hasFile('urlFoto')) {
+            $uploadedFileUrl = $request->file('urlFoto')->storeOnCloudinary('computadores')->getSecurePath();
+            $data['urlFoto'] = $uploadedFileUrl;
+        }
+
+        $computer->update($data);
+
+        return response()->json($computer, 200);
     }
 
-    $computer->update($data);
-
-    return response()->json($computer, 200);
-}
-
     // ELIMINAR UN REGISTRO
-    public function destroy($id) {
+    public function destroy($id)
+    {
 
         $computer = Computer::findOrFail($id);
 
@@ -80,4 +83,3 @@ class ComputerController extends Controller
         return response()->json(['message' => 'Eliminado correctamente'], 200);
     }
 }
-
