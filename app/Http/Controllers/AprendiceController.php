@@ -20,7 +20,8 @@ class AprendiceController extends Controller
     } */
 
         public function index(){
-        $aprendices = Aprendice::all();
+        $aprendices = Aprendice::with(['course', 'computer'])->get();
+
         return response()->json($aprendices, 200);
     }
 
@@ -40,12 +41,44 @@ class AprendiceController extends Controller
         return response()->json($aprendice, 201);
     }
     // MOSTRAR UN REGISTRO
-    public function show($id) {
+    public function show($id)
+{
+    $aprendice = Aprendice::findOrFail($id);
 
-        $aprendice = Aprendice::findOrFail($id);
+    // 1. Buscar los IDs de computadores ocupados por otros aprendices
+    $computersOcupados = Aprendice::where('id', '!=', $id)
+        ->whereNotNull('computer_id')
+        ->pluck('computer_id');
 
-        return response()->json($aprendice, 200);
-    }
+    // 2. Traer los computadores libres + el actual del aprendiz
+    $computers = Computer::whereNotIn('id', $computersOcupados)->get();
+
+    // 3. Retornar la estructura que el cliente está esperando
+    return response()->json([
+        'aprendice' => $aprendice,
+        'computers' => $computers
+    ], 200);
+}
+
+    public function edit($id)
+{
+    $aprendice = Aprendice::findOrFail($id);
+
+    // 1. Buscar los IDs de computadores que ya están ocupados por OTROS aprendices
+    $computersOcupados = Aprendice::where('id', '!=', $id)
+        ->whereNotNull('computer_id')
+        ->pluck('computer_id');
+
+    // 2. Traer los computadores que NO estén ocupados (o que sean el del aprendiz actual)
+    $computers = Computer::whereNotIn('id', $computersOcupados)->get();
+
+    // Retornas el aprendiz y los computadores filtrados a tu cliente
+    return response()->json([
+        'aprendice' => $aprendice,
+        'computers' => $computers
+    ]);
+}
+
     // ACTUALIZAR UN REGISTRO
     public function update(Request $request, $id) {
 

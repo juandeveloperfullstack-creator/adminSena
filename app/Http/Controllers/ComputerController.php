@@ -20,30 +20,26 @@ class ComputerController extends Controller
     }
 
     // GUARDAR DATOS
-    public function store(Request $request) {
+    public function store(Request $request) 
+{
+    $validated = $request->validate([
+        'number' => 'required|numeric',
+        'brand' => 'required|string|max:225',
+        'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $validated = $request->validate([
-            'number' => 'required|numeric',
-            'brand' => 'required|string|max:225',
-            'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+    $data = $validated;
 
-        $computer = Computer::create($validated);
-
-        if ($request->hasFile('urlFoto')) {
-        $file = $request->file('urlFoto');
-        $nombreArchivo = "foto_" . time() . "." . $file->guessExtension();
-
-        // Guardar archivo en storage/app/public/images
-        $file->storeAs('public/images', $nombreArchivo);
-
-        // Actualizar el atributo y guardar en BD
-        $computer->urlFoto = $nombreArchivo;
-        $computer->save();
+    
+    if ($request->hasFile('urlFoto')) {
+        $uploadedFileUrl = $request->file('urlFoto')->storeOnCloudinary('computadores')->getSecureUrl();
+        $data['urlFoto'] = $uploadedFileUrl;
     }
 
-        return response()->json($computer, 201);
-    }
+    $computer = Computer::create($data);
+
+    return response()->json($computer, 201);
+}
     // MOSTRAR UN REGISTRO
     public function show($id) {
 
@@ -52,20 +48,27 @@ class ComputerController extends Controller
         return response()->json($computer, 200);
     }
     // ACTUALIZAR UN REGISTRO
-    public function update(Request $request, $id) {
-
+    public function update(Request $request, $id) 
+{
     $computer = Computer::findOrFail($id);
 
     $validated = $request->validate([
-            'number' => 'required|numeric',
-            'brand' => 'required|string|max:225',
-            'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        'number' => 'required|numeric',
+        'brand' => 'required|string|max:225',
+        'urlFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-    $computer->update($validated);
-    
-    return response()->json($computer, 200);
+    $data = $validated;
+
+    if ($request->hasFile('urlFoto')) {
+        $uploadedFileUrl = $request->file('urlFoto')->storeOnCloudinary('computadores')->getSecureUrl();
+        $data['urlFoto'] = $uploadedFileUrl;
     }
+
+    $computer->update($data);
+
+    return response()->json($computer, 200);
+}
 
     // ELIMINAR UN REGISTRO
     public function destroy($id) {

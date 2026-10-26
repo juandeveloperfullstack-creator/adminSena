@@ -31,7 +31,7 @@ class CourseController extends Controller
 
         // MOSTRAR TODOS LOS DATOS
     public function index(){
-        $cursos = Course::all();
+        $cursos = Course::with(['area', 'trainingCenter'])->get();
         return response()->json($cursos, 200);
     }
 
